@@ -88,9 +88,9 @@ Sound unlikely? Imagine you have a simple website and only have a dozen componen
 - Convert to ES6
 - Pretty up the CLI
 - Fix path flags omg...
+- Make it work with .sass .scss .styl .less
 - Testing/coverage
 - Make a little/simple website to put the README ramblings and other educational resources on.
 - Once it's thoroughly tested, add a `--fix` flag to operate on src markup directly. This kinda screws with the modularity of components, but I'm sure a lot of people would like it.
 - Figure out how to expose as a Node module.
 - Figure out how to stdout single files so people can pipe them and such. I hear people love that kinda stuff.
-- Get some :zzz:...
