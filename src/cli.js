@@ -20,12 +20,20 @@ cli.input.forEach(function (globPattern) {
 
       var rl = readline.createInterface({
         input: fs.createReadStream(markupSrcPath),
-        output: fs.createWriteStream(markupDistPath)
+        output: fs.createWriteStream(markupDistPath, {
+          flags: 'r+',
+          autoClose: false
+        })
       });
+
+      console.log(rl.output);
+      console.log('\n\n\n');
 
       rl.on('line', function (line) {
         if (line.match(/rel="stylesheet"/)) {
           console.log('Line has <link>:', line);
+
+          rl.write(line.replace(/>/, '> <script> </script>'));
         }
       });
     });
