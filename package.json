@@ -22,13 +22,13 @@
   },
   "homepage": "https://github.com/corysimmons/css-body-components#readme",
   "scripts": {
-    "server:example": "browser-sync start --no-notify --no-open --server 'example' --files='index.html, css/**/*.css'"
+    "example": "trash **/dist && node cli example/markup/src/*.html --markup-dist ../dist --css-src example/css/src --css-dist example/css/dist --max-stylesheets 4"
   },
   "devDependencies": {
-    "browser-sync": "^2.11.1",
     "concat": "^1.0.0",
     "fs-extra": "^0.26.5",
     "globby": "^4.0.0",
-    "meow": "^3.7.0"
+    "meow": "^3.7.0",
+    "trash-cli": "^1.2.0"
   }
 }
