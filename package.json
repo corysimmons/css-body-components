@@ -1,0 +1,33 @@
+{
+  "name": "css-body-components",
+  "description": "link in body task for faster critical content, progressive loading, and minimized re-calc'd layouts.",
+  "version": "0.0.1",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/corysimmons/css-body-components.git"
+  },
+  "keywords": [
+    "css",
+    "link",
+    "body",
+    "component",
+    "stylesheet",
+    "module"
+  ],
+  "author": "Cory Simmons",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/corysimmons/css-body-components/issues"
+  },
+  "homepage": "https://github.com/corysimmons/css-body-components#readme",
+  "scripts": {
+    "server:example": "browser-sync start --no-notify --no-open --server 'example' --files='index.html, css/**/*.css'"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.11.1",
+    "globby": "^4.0.0",
+    "meow": "^3.7.0",
+    "shelljs": "^0.6.0"
+  }
+}

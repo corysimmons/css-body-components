@@ -1,2 +1,5 @@
 # css-body-components
-&lt;link> in &lt;body> task for progressive loading and minimized re-calc'd layouts.
+
+`<link>` in `<body>` task for faster critical content, progressive loading, and minimized re-calc'd layouts.
+
+:warning: WIP
