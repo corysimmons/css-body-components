@@ -28,8 +28,6 @@ cli.input.forEach(function (globPattern) {
           console.log('Line has <link>:', line);
         }
       });
-
-      rl.close();
     });
   });
 });
