@@ -29,10 +29,18 @@ cli.input.forEach(function (globPattern) {
       });
 
       // read each line and test/replace <link> with appropriate stuff
+      var uniqueLinks = [];
+
       rl.on('line', function (line) {
         if (line.match(/rel="stylesheet"/)) {
-          var newLine = line.replace(/(.*)/, '$1<script> </script>');
-          ws.write(newLine + '\n', 'utf8');
+          if (uniqueLinks.indexOf(line.trim()) === -1) {
+            // put fresh links in uniqueLinks arr
+            uniqueLinks.push(line.trim());
+
+            // clean up fresh links
+            var newLine = line.replace(/(.*)/, '$1<script> </script>');
+            ws.write(newLine + '\n', 'utf8');
+          }
         } else {
           ws.write(line + '\n', 'utf8');
         }
