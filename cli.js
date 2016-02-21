@@ -4,10 +4,12 @@ var readline = require('readline');
 
 var meow = require('meow');
 var globby = require('globby');
+var concat = require('concat');
 
-var cli = meow('Usage: $ css-body-components example.html --markup-dist markup/dist --css-src css/src --css-dist css/dist\n ');
+var cli = meow('Usage: $ css-body-components example.html --markup-dist markup/dist --css-src css/src --css-dist css/dist --max-stylesheets 5\n ');
 
 var markupDist = markupDist || 'markup/dist';
+var maxStylesheets = maxStylesheets || 5;
 
 cli.input.forEach(function (globPattern) {
   globby([globPattern, '!node_modules/**']).then(function (paths) {
@@ -37,13 +39,38 @@ cli.input.forEach(function (globPattern) {
             // put fresh links in uniqueLinks arr
             uniqueLinks.push(line.trim());
 
-            // clean up fresh links
-            var newLine = line.replace(/(.*)/, '$1<script> </script>');
-            ws.write(newLine + '\n', 'utf8');
+            // adhere to max stylesheets
+            if (uniqueLinks.length < maxStylesheets) {
+              // clean up fresh links
+              var newLine = line.replace(/(.*)/, '$1<script> </script>');
+              ws.write(newLine + '\n', 'utf8');
+            }
           }
         } else {
           ws.write(line + '\n', 'utf8');
         }
+      });
+
+      // add fat final stylesheet
+      rl.on('close', function () {
+        var loserLinks = uniqueLinks.slice(maxStylesheets - 1);
+        var loserLinkPaths = [];
+        var loserLinkBasenames = [];
+
+        loserLinks.forEach(function (loserLink) {
+          var loserLinkPath = loserLink.replace(/.*href="(.*)".*/, '$1');
+          loserLinkPaths.push(loserLinkPath);
+
+          var loserLinkBasename = path.basename(loserLinkPath, '.css');
+          loserLinkBasenames.push(loserLinkBasename);
+        });
+
+        var sortedLoserLinkBasenames = loserLinkBasenames.sort();
+        var fatCssFileName = sortedLoserLinkBasenames.join('-') + '.css';
+
+        concat(loserLinkPaths, fatCssFileName, function (err) {
+          if (err) throw err;
+        });
       });
     });
   });

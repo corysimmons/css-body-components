@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "browser-sync": "^2.11.1",
+    "concat": "^1.0.0",
     "fs-extra": "^0.26.5",
     "globby": "^4.0.0",
     "meow": "^3.7.0"
