@@ -13,13 +13,14 @@ var markupDist = markupDist || 'markup/dist';
 cli.input.forEach(function (globPattern) {
   globby([globPattern, '!node_modules/**']).then(function (paths) {
     paths.forEach(function (markupSrcPath) {
-      var markupDistDir = path.join(markupDist, path.dirname(markupSrcPath));
+      var markupDistDir = path.join(path.dirname(markupSrcPath), markupDist);
+      var markupDistPath = path.join(markupDistDir, path.basename(markupSrcPath));
 
       shell.mkdir('-p', markupDistDir);
 
       var rl = readline.createInterface({
         input: fs.createReadStream(markupSrcPath),
-        output: fs.createWriteStream(path.join(markupDistDir, path.basename(markupSrcPath)))
+        output: fs.createWriteStream(markupDistPath)
       });
 
       rl.on('line', function (line) {
