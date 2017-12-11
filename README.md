@@ -1,5 +1,7 @@
 # :zap: CSS `<body>` Components
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/corysimmons/css-body-components.svg)](https://greenkeeper.io/)
+
 `<link>` in `<body>` task for faster critical content, progressive loading, and minimized re-calc'd layouts.<br>
 Run the thing, get the speed.
 
