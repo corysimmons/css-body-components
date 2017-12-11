@@ -26,9 +26,9 @@
   },
   "devDependencies": {
     "concat": "^1.0.0",
-    "fs-extra": "^0.26.5",
-    "globby": "^4.0.0",
-    "meow": "^3.7.0",
+    "fs-extra": "^4.0.3",
+    "globby": "^7.1.1",
+    "meow": "^4.0.0",
     "trash-cli": "^1.2.0"
   }
 }
